@@ -17,9 +17,12 @@ const toolbarStyle = {
 };
 
 class NavBar extends Component {
-  onSearch = async filter => {
-    await appStore.search(filter);
-    route({ to: 'products', params: { search: filter } });
+  onSearch = filter => {
+    route({
+      to: 'products',
+      params: { search: filter },
+      options: { history: true }
+    });
   };
 
   render() {

@@ -1,7 +1,11 @@
 import axios from 'axios';
 import appStore from './appStore';
-import { pick } from 'lodash';
+import { pick, defaults } from 'lodash';
 import { storage } from 'react-easy-stack';
+
+defaults(storage, {
+  cache: {}
+});
 
 const api = axios.create({
   baseURL: 'https://freebie-server.sloppy.zone/api/',
@@ -25,6 +29,7 @@ export async function search(filter) {
   const { data } = await api.get('/products', {
     params: { search: filter }
   });
+  storage.cache[filter] = data.products;
   return data.products;
 }
 

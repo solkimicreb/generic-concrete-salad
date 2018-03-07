@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { view } from 'react-easy-stack';
+import { view, storage, params } from 'react-easy-stack';
 import appStore from './appStore';
 import Product from './Product';
 
@@ -12,9 +12,13 @@ const listStyle = {
 
 class ProductList extends Component {
   render() {
+    const products = this.props.pageResolved
+      ? appStore.products
+      : storage.cache[params.search] || [];
+
     return (
       <div style={listStyle}>
-        {appStore.products.map(product => (
+        {products.map(product => (
           <Product key={product.id} product={product} />
         ))}
       </div>
