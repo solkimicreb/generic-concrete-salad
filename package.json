@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "now-start": "serve build --single",
     "deploy":
-      "git add -A && git commit -m 'add code' && git push && now && now alias",
+      "git add -A && git commit -m 'add code' && git push origin master && now && now alias",
     "purge-deployments": "now-purge -n generic-concrete-salad"
   },
   "now": {
