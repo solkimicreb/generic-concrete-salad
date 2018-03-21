@@ -10,7 +10,8 @@ defaults(storage, {
 const api = axios.create({
   baseURL: 'https://freebie-server.sloppy.zone/api/',
   headers: {
-    token: storage.token
+    token: storage.token,
+    'Content-Type': 'application/json'
   }
 });
 
@@ -37,6 +38,21 @@ export async function search(filter) {
   });
   storage.cache[filter] = data.products;
   return data.products;
+}
+
+export async function fetchProduct(id) {
+  const { data } = await api.get(`/products/${id}`);
+  return data;
+}
+
+export async function saveProduct(product) {
+  const { data } = await api.post('/products', product);
+  return data;
+}
+
+export async function editProduct(id, product) {
+  const { data } = await api.put(`/products/${id}`, product);
+  return data;
 }
 
 export async function login(loginData) {

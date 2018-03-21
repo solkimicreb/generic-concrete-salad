@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { view } from 'react-easy-stack';
+import { view, Link } from 'react-easy-stack';
 import Card, { CardContent } from 'material-ui/Card';
 
 const productStyle = {
@@ -10,13 +10,15 @@ const productStyle = {
 
 class Product extends Component {
   render() {
-    const { name, description } = this.props.product;
+    const { name, description, id } = this.props.product;
     return (
       <Card style={productStyle}>
-        <CardContent>
-          <h3>{name}</h3>
-          <p>{description}</p>
-        </CardContent>
+        <Link to="/product" params={{ id }}>
+          <CardContent>
+            <h3>{name}</h3>
+            <p>{description}</p>
+          </CardContent>
+        </Link>
       </Card>
     );
   }

@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import { view, storage, params } from 'react-easy-stack';
+import React, { Component, Fragment } from 'react';
+import { view, storage, params, Link } from 'react-easy-stack';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
 import appStore from './appStore';
 import Product from './Product';
 
@@ -10,6 +12,12 @@ const listStyle = {
   flexWrap: 'wrap'
 };
 
+const addButtonStyle = {
+  position: 'fixed',
+  right: 20,
+  bottom: 20
+};
+
 class ProductList extends Component {
   render() {
     const products = this.props.pageResolved
@@ -17,11 +25,18 @@ class ProductList extends Component {
       : storage.cache[params.search] || [];
 
     return (
-      <div style={listStyle}>
-        {products.map(product => (
-          <Product key={product.id} product={product} />
-        ))}
-      </div>
+      <Fragment>
+        <div style={listStyle}>
+          {products.map(product => (
+            <Product key={product.id} product={product} />
+          ))}
+        </div>
+        <Link to="/product" style={addButtonStyle}>
+          <Button color="primary" variant="fab">
+            <AddIcon />
+          </Button>
+        </Link>
+      </Fragment>
     );
   }
 }

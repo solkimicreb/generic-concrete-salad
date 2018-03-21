@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Router, view, params } from 'react-easy-stack';
 import NavBar from './NavBar';
 import ProductList from './ProductList';
+import ProductEditor from './ProductEditor';
 import Login from './Login';
 import appStore from './appStore';
 
@@ -46,6 +47,7 @@ class App extends Component {
             resolve={this.searchProducts}
             timeout={800}
           />
+          <ProductEditor page="product" resolve={appStore.resolveProduct} />
           <Login page="login" />
         </Router>
       </Fragment>
