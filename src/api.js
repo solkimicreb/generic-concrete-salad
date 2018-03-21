@@ -20,10 +20,16 @@ api.interceptors.request.use(config => {
   return config;
 });
 
-api.interceptors.response.use(response => {
-  appStore.isLoading = false;
-  return response;
-});
+api.interceptors.response.use(
+  response => {
+    appStore.isLoading = false;
+    return response;
+  },
+  error => {
+    appStore.isLoading = false;
+    throw error;
+  }
+);
 
 export async function search(filter) {
   const { data } = await api.get('/products', {

@@ -11,7 +11,7 @@
     "now-purge": "0.0.15",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-easy-stack": "^0.1.0-alpha.5",
+    "react-easy-stack": "^0.1.0-alpha.7",
     "react-scripts": "1.1.1",
     "serve": "^6.5.0",
     "typeface-roboto": "^0.0.54"
