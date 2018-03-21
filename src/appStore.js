@@ -1,4 +1,4 @@
-import { store, params } from 'react-easy-stack';
+import { store } from 'react-easy-stack';
 import * as api from './api';
 
 const appStore = store({
@@ -13,7 +13,5 @@ const appStore = store({
     this.user = await api.register(registerData);
   }
 });
-
-appStore.search(params.search);
 
 export default appStore;

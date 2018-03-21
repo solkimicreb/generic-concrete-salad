@@ -12,16 +12,16 @@ const appStyle = {
 
 const enterAnimation = {
   keyframes: {
-    opactity: [0, 1],
-    transform: ['translateY(-10px)', 'none']
+    opacity: [0, 1],
+    transform: ['translateY(-15px)', 'none']
   },
   options: 150
 };
 
 const leaveAnimation = {
   keyframes: {
-    opactity: [1, 0],
-    transform: ['none', 'translateY(10px)']
+    opacity: [1, 0],
+    transform: ['none', 'translateY(15px)']
   },
   options: 150
 };
@@ -38,11 +38,14 @@ class App extends Component {
         <Router
           defaultPage="products"
           style={appStyle}
-          timeout={800}
           enterAnimation={enterAnimation}
           leaveAnimation={leaveAnimation}
         >
-          <ProductList page="products" resolve={this.searchProducts} />
+          <ProductList
+            page="products"
+            resolve={this.searchProducts}
+            timeout={800}
+          />
           <Login page="login" />
         </Router>
       </Fragment>
