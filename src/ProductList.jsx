@@ -18,27 +18,27 @@ const addButtonStyle = {
   bottom: 20
 };
 
-class ProductList extends Component {
-  render() {
-    const products = this.props.pageResolved
-      ? appStore.products
-      : storage.cache[params.search] || [];
+function ProductList({ pageResolved }) {
+  const products = pageResolved
+    ? appStore.products
+    : storage.cache[params.search] || [];
 
-    return (
-      <Fragment>
-        <div style={listStyle}>
-          {products.map(product => (
-            <Product key={product.id} product={product} />
-          ))}
-        </div>
+  return (
+    <Fragment>
+      <div style={listStyle}>
+        {products.map(product => (
+          <Product key={product.id} product={product} />
+        ))}
+      </div>
+      {appStore.isLoggedIn && (
         <Link to="/product" style={addButtonStyle}>
           <Button color="primary" variant="fab">
             <AddIcon />
           </Button>
         </Link>
-      </Fragment>
-    );
-  }
+      )}
+    </Fragment>
+  );
 }
 
 export default view(ProductList);

@@ -1,7 +1,8 @@
 import axios from 'axios';
-import appStore from './appStore';
+import appStore, * as app from './appStore';
 import { pick, defaults } from 'lodash';
 import { storage } from 'react-easy-stack';
+import { notify } from './Notification';
 
 defaults(storage, {
   cache: {}
@@ -67,3 +68,15 @@ export async function register(registerData) {
   await api.post('/users/register', registerData);
   return login(registerData);
 }
+
+export function logout() {
+  delete api.defaults.headers.token;
+  delete storage.token;
+}
+
+export function isLoggedIn() {
+  return 'token' in storage;
+}
+
+window.addEventListener('online', () => notify('You are online'));
+window.addEventListener('offline', () => notify('You are offline'));

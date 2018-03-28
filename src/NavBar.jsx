@@ -4,9 +4,9 @@ import Toolbar from 'material-ui/Toolbar';
 import SearchBar from 'material-ui-search-bar';
 import { LinearProgress } from 'material-ui/Progress';
 import Button from 'material-ui/Button';
-import { view, params, route, Link } from 'react-easy-stack';
-
-import appStore from './appStore';
+import { view, params, path, route, Link } from 'react-easy-stack';
+import { notify } from './Notification';
+import appStore, * as app from './appStore';
 
 const toolbarStyle = {
   width: '100%',
@@ -17,24 +17,38 @@ const toolbarStyle = {
 };
 
 class NavBar extends Component {
-  onSearch = filter => {
+  onSearch = search => {
     route({
       to: 'products',
-      params: { search: filter },
-      options: { history: true }
+      params: { search },
+      options: { history: true, animate: search !== params.search }
     });
   };
 
+  onLogout = () => {
+    app.logout();
+    if (path[0] === 'product') {
+      route({ to: '/login' });
+      notify('Please log in to see the product page');
+    }
+  };
+
   render() {
+    const { isLoggedIn, isLoading } = appStore;
+
     return (
       <AppBar>
         <Toolbar style={toolbarStyle}>
           <SearchBar onRequestSearch={this.onSearch} value={params.search} />
           <Button color="inherit">
-            <Link to="login">Login</Link>
+            {isLoggedIn ? (
+              <span onClick={this.onLogout}>Logout</span>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </Button>
         </Toolbar>
-        {appStore.isLoading && <LinearProgress color="secondary" />}
+        {isLoading && <LinearProgress color="secondary" />}
       </AppBar>
     );
   }

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { view, store, params } from 'react-easy-stack';
-import { FormGroup } from 'material-ui/Form';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import appStore from './appStore';
+import Checkbox from 'material-ui/Checkbox';
+import appStore, * as app from './appStore';
 
 const productShell = {
   name: '',
-  description: ''
+  description: '',
+  price: 0,
+  currency: 'USD',
+  available: undefined
 };
 
 class ProductEditor extends Component {
@@ -19,18 +23,27 @@ class ProductEditor extends Component {
     this.store.changes[ev.target.name] = ev.target.value;
   };
 
-  onSave = () => {
+  onCheckChange = ev => {
+    this.store.changes[ev.target.name] = ev.target.checked;
+  };
+
+  onSave = async () => {
     if (params.id) {
-      appStore.editProduct(params.id, this.store.changes);
+      await app.editProduct(params.id, this.store.changes);
     } else {
-      appStore.saveProduct(this.store.changes);
+      const product = await app.saveProduct(this.store.changes);
+      params.id = product.id;
     }
   };
 
   render() {
     const { product } = this.props;
     const { changes } = this.store;
-    const { name, description } = Object.assign({}, product, changes);
+    const { name, description, price, available } = Object.assign(
+      {},
+      product,
+      changes
+    );
     const label = params.id ? 'Edit Product' : 'Add Product';
 
     return (
@@ -49,6 +62,25 @@ class ProductEditor extends Component {
           multiline={true}
           value={description}
           onChange={this.onChange}
+        />
+        <TextField
+          name="price"
+          label="Price"
+          margin="dense"
+          type="number"
+          value={price}
+          onChange={this.onChange}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              name="available"
+              checked={available}
+              indeterminate={available === undefined}
+              onChange={this.onCheckChange}
+            />
+          }
+          label="Avaliable"
         />
         <Button onClick={this.onSave}>{label}</Button>
       </FormGroup>

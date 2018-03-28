@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { view, store } from 'react-easy-stack';
+import { view, store, route } from 'react-easy-stack';
 import { FormGroup } from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import appStore from './appStore';
+import * as app from './appStore';
 
 class Login extends Component {
   store = store();
@@ -12,12 +12,14 @@ class Login extends Component {
     this.store[ev.target.name] = ev.target.value;
   };
 
-  onLogin = () => {
-    appStore.login(this.store);
+  onLogin = async () => {
+    await app.login(this.store);
+    route({ to: '/' });
   };
 
-  onRegister = () => {
-    appStore.register(this.store);
+  onRegister = async () => {
+    await app.register(this.store);
+    route({ to: '/' });
   };
 
   render() {
