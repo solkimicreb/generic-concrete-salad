@@ -16,7 +16,7 @@ const enterAnimation = {
     opacity: [0, 1],
     transform: ['translateY(-15px)', 'none']
   },
-  options: 150
+  duration: 150
 };
 
 const leaveAnimation = {
@@ -24,7 +24,7 @@ const leaveAnimation = {
     opacity: [1, 0],
     transform: ['none', 'translateY(15px)']
   },
-  options: 150
+  duration: 150
 };
 
 class App extends Component {
