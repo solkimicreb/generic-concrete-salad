@@ -9,11 +9,17 @@ import { notify } from './Notification';
 import appStore, * as app from './appStore';
 
 const toolbarStyle = {
-  width: '100%',
-  maxWidth: 800,
+  width: 800,
+  maxWidth: '100%',
   margin: '0 auto',
+  padding: '3 10px',
   display: 'flex',
   justifyContent: 'space-between'
+};
+
+const searchStyle = {
+  width: '50%',
+  minWidth: '160px'
 };
 
 class NavBar extends Component {
@@ -39,7 +45,11 @@ class NavBar extends Component {
     return (
       <AppBar>
         <Toolbar style={toolbarStyle}>
-          <SearchBar onRequestSearch={this.onSearch} value={params.search} />
+          <SearchBar
+            onRequestSearch={this.onSearch}
+            value={params.search}
+            style={searchStyle}
+          />
           <Button color="inherit">
             {isLoggedIn ? (
               <span onClick={this.onLogout}>Logout</span>
