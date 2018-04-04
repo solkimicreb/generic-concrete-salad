@@ -11,7 +11,7 @@
     "now-purge": "0.0.15",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-easy-stack": "^0.1.0-alpha.9",
+    "react-easy-stack": "^0.1.0-alpha.10",
     "react-scripts": "1.1.1",
     "serve": "^6.5.0",
     "typeface-roboto": "^0.0.54"
@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "now-start": "serve build --single",
+    "now-start": "serve build --single --cache 0",
     "deploy": "git add -A && git commit -m 'add code' && git push origin master && now && now alias",
     "purge-deployments": "now-purge -n generic-concrete-salad"
   },
