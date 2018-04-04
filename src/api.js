@@ -77,6 +77,3 @@ export function logout() {
 export function isLoggedIn() {
   return 'token' in storage;
 }
-
-window.addEventListener('online', () => notify('You are online'));
-window.addEventListener('offline', () => notify('You are offline'));
