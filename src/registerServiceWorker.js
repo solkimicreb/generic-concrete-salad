@@ -8,6 +8,7 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
+import Button from 'material-ui/Button';
 import { notify } from './Notification';
 
 const isLocalhost = Boolean(
@@ -67,7 +68,12 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              notify('New content is available; please refresh.');
+              notify(
+                'New content is available, please refresh.',
+                <Button onClick={() => window.location.reload(true)}>
+                  Refresh
+                </Button>
+              );
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
