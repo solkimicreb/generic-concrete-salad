@@ -10,7 +10,7 @@ const notificationStore = store({
 
 export function notify(message, action) {
   notificationStore.message = message;
-  notificationStore.action;
+  notificationStore.action = action;
   notificationStore.isOpen = true;
 }
 

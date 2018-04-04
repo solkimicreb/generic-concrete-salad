@@ -61,7 +61,7 @@ class Login extends Component {
           Login
         </Button>
         <Button onClick={this.onRegister} variant="raised" style={buttonStyle}>
-          Register
+          Register!!
         </Button>
       </FormGroup>
     );
