@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { view, store, params } from 'react-easy-stack';
+import { view, store, params, route } from 'react-easy-stack';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -32,8 +32,8 @@ class ProductEditor extends Component {
       await app.editProduct(params.id, this.store.changes);
     } else {
       const product = await app.saveProduct(this.store.changes);
-      params.id = product.id;
     }
+    route({ to: '/products' });
   };
 
   render() {
@@ -82,7 +82,9 @@ class ProductEditor extends Component {
           }
           label="Avaliable"
         />
-        <Button onClick={this.onSave}>{label}</Button>
+        <Button onClick={this.onSave} variant="raised" color="primary">
+          {label}
+        </Button>
       </FormGroup>
     );
   }

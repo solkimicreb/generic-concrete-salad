@@ -9,13 +9,14 @@ import Notification, { notify } from './Notification';
 
 const appStyle = {
   maxWidth: 800,
-  margin: '80px auto'
+  margin: '70px auto',
+  padding: 20
 };
 
 const enterAnimation = {
   keyframes: {
     opacity: [0, 1],
-    transform: ['translateY(-15px)', 'none']
+    transform: ['translateX(-10px)', 'translateX(5)', 'none']
   },
   duration: 150
 };
@@ -23,9 +24,9 @@ const enterAnimation = {
 const leaveAnimation = {
   keyframes: {
     opacity: [1, 0],
-    transform: ['none', 'translateY(15px)']
+    transform: ['none', 'translateX(10px)']
   },
-  duration: 150
+  duration: 50
 };
 
 class App extends Component {

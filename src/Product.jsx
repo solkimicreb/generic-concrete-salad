@@ -5,7 +5,7 @@ import Card, { CardContent } from 'material-ui/Card';
 const productStyle = {
   width: 350,
   maxWidth: '95%',
-  margin: 20
+  margin: '10px 20px'
 };
 
 class Product extends Component {

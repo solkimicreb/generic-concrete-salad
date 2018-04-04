@@ -27,8 +27,8 @@ class NavBar extends Component {
 
   onLogout = () => {
     app.logout();
+    route({ to: '/login' });
     if (path[0] === 'product') {
-      route({ to: '/login' });
       notify('Please log in to see the product page');
     }
   };

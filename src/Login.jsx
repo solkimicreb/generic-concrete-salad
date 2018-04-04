@@ -5,6 +5,10 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import * as app from './appStore';
 
+const buttonStyle = {
+  marginTop: 10
+};
+
 class Login extends Component {
   store = store();
 
@@ -29,6 +33,7 @@ class Login extends Component {
           type="email"
           name="email"
           label="Email"
+          autoComplete="email"
           margin="dense"
           onChange={this.onChange}
         />
@@ -36,17 +41,28 @@ class Login extends Component {
           type="password"
           name="pass"
           label="Password"
+          autoComplete="new-password"
           margin="dense"
           onChange={this.onChange}
         />
         <TextField
           name="username"
           label="Username"
+          autoComplete="username"
           margin="dense"
           onChange={this.onChange}
         />
-        <Button onClick={this.onLogin}>Login</Button>
-        <Button onClick={this.onRegister}>Register</Button>
+        <Button
+          onClick={this.onLogin}
+          color="primary"
+          variant="raised"
+          style={buttonStyle}
+        >
+          Login
+        </Button>
+        <Button onClick={this.onRegister} variant="raised" style={buttonStyle}>
+          Register
+        </Button>
       </FormGroup>
     );
   }

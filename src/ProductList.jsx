@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { view, storage, params, Link } from 'react-easy-stack';
+import { view, storage, path, params, Link } from 'react-easy-stack';
+import ReactDOM from 'react-dom';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
+import Zoom from 'material-ui/transitions/Zoom';
 import appStore from './appStore';
 import Product from './Product';
 
@@ -9,7 +11,8 @@ const listStyle = {
   display: 'flex',
   alignItems: 'stretch',
   justifyContent: 'space-around',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  margin: -20
 };
 
 const addButtonStyle = {
@@ -30,13 +33,17 @@ function ProductList({ pageResolved }) {
           <Product key={product.id} product={product} />
         ))}
       </div>
-      {appStore.isLoggedIn && (
-        <Link to="/product" style={addButtonStyle}>
-          <Button color="primary" variant="fab">
-            <AddIcon />
-          </Button>
-        </Link>
-      )}
+      {appStore.isLoggedIn &&
+        ReactDOM.createPortal(
+          <Zoom in={path[0] === 'products'}>
+            <Link to="/product" style={addButtonStyle}>
+              <Button color="primary" variant="fab">
+                <AddIcon />
+              </Button>
+            </Link>
+          </Zoom>,
+          document.getElementById('action-button')
+        )}
     </Fragment>
   );
 }
