@@ -71,7 +71,10 @@ function registerValidSW(swUrl) {
               // available; please refresh." message in your web app.
               notify(
                 'New content is available, please refresh.',
-                <Button onClick={() => window.location.reload(true)}>
+                <Button
+                  onClick={() => window.location.reload(true)}
+                  color="secondary"
+                >
                   Refresh
                 </Button>
               );

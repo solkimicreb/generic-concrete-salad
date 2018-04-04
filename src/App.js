@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Router, view, params } from 'react-easy-stack';
+import Button from 'material-ui/Button';
 import NavBar from './NavBar';
 import ProductList from './ProductList';
 import ProductEditor from './ProductEditor';
