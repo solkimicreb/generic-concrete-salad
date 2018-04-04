@@ -19,7 +19,7 @@ const toolbarStyle = {
 
 const searchStyle = {
   width: '50%',
-  minWidth: '160px'
+  minWidth: '180px'
 };
 
 class NavBar extends Component {

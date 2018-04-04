@@ -9,7 +9,7 @@ import Notification, { notify } from './Notification';
 
 const appStyle = {
   maxWidth: 800,
-  margin: '70px auto',
+  margin: '50px auto',
   padding: 20
 };
 
@@ -51,6 +51,7 @@ class App extends Component {
           style={appStyle}
           enterAnimation={enterAnimation}
           leaveAnimation={leaveAnimation}
+          animate={true}
         >
           <ProductList
             page="products"

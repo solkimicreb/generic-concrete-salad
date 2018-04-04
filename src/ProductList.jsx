@@ -12,7 +12,7 @@ const listStyle = {
   alignItems: 'stretch',
   justifyContent: 'space-around',
   flexWrap: 'wrap',
-  margin: -20
+  margin: '0 -20px'
 };
 
 const addButtonStyle = {
