@@ -7,4 +7,4 @@ import autoBlur from './autoBlur';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-autoBlur();
+// autoBlur();

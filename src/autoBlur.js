@@ -1,5 +1,6 @@
-export default function autoBlur(element = window) {
+export default function autoBlur() {
   window.addEventListener('keypress', ev => {
+    const element = ev.target;
     const isEnter = ev.charCode === 13 || ev.which === 13 || ev.keyCode === 13;
     const isInput = element.matches('input, select');
     if (isInput && isEnter) {
